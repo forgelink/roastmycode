@@ -22,7 +22,10 @@
     @inertia
 
     <div class="top-0 right-0 left-0 bottom-0 fixed flex items-center justify-center z-50" id="initial_loading">
-        <span class="loading mx-auto"></span>
+        <div class="flex flex-col items-center gap-5">
+            <span class="loading mx-auto"></span>
+            <span class="text-2xl">Loading</span>
+        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
