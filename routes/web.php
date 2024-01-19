@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
