@@ -4,20 +4,20 @@ export default function HeroSection() {
     return (
         <div className="h-[145vh] lg:h-[100vh] overflow-hidden">
             <div className="flex flex-col lg:flex-row items-center lg:justify-between container relative h-full">
-                <div className="mt-32">
+                <div className="mt-32 lg:mt-0">
                     <h1 className='text-6xl font-black'>
                         Talk is cheap.
                         <br />
                         Show me the code.
                     </h1>
                     <p className="text-lg mt-3">
-                        Improve Your Code, Embrace Feedback.
+                        Think your code is flawless?
                         <br />
-                        Let's Tackle Challenges Together!
+                        Share your 'perfect' masterpiece and let the roasting begin.
                     </p>
 
                     <SecondaryButton className="mt-5">
-                        Submit your code
+                        Challenge accepted?
                     </SecondaryButton>
                 </div>
 
