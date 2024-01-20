@@ -5,10 +5,7 @@ import { Link, usePage } from "@inertiajs/react";
 import AuthenticateModal from "./Modals/AuthenticateModal";
 import Dropdown from "./Dropdown";
 
-export default function Navbar() {
-    const auth = usePage().props.auth;
-
-    const [showModal, setShowModal] = useState(false);
+export default function Navbar({ auth, showModal, setShowModal }) {
 
     return (
         <header className="absolute top-0 left-0 right-0 w-full z-50">
@@ -50,7 +47,7 @@ export default function Navbar() {
                                 </Dropdown.Trigger>
 
                                 <Dropdown.Content>
-                                    {/* <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link> */}
+                                    <Dropdown.Link href={route('profile.edit')}>Submit code</Dropdown.Link>
                                     <Dropdown.Link href={route('logout')} method="post" as="button">
                                         Log Out
                                     </Dropdown.Link>

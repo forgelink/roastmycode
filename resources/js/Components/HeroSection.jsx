@@ -1,6 +1,6 @@
 import SecondaryButton from "./SecondaryButton";
 
-export default function HeroSection() {
+export default function HeroSection({ auth, setShowModal }) {
     return (
         <div className="h-[145vh] lg:h-[100vh] overflow-hidden">
             <div className="flex flex-col lg:flex-row items-center lg:justify-between container relative h-full">
@@ -16,9 +16,17 @@ export default function HeroSection() {
                         Share your 'perfect' masterpiece and let the roasting begin.
                     </p>
 
-                    <SecondaryButton className="mt-5">
-                        Challenge accepted?
-                    </SecondaryButton>
+                    {
+                        !auth.user ?
+                            <SecondaryButton onClick={() => setShowModal(true)} className="mt-5">
+                                Challenge accepted?
+                            </SecondaryButton>
+                            :
+                            <SecondaryButton className="mt-5">
+                                Submit your code
+                            </SecondaryButton>
+                    }
+
                 </div>
 
                 <div className="mt-10">

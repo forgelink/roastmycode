@@ -3,15 +3,18 @@ import HeroSection from '@/Components/HeroSection';
 import Navbar from '@/Components/Navbar';
 import SecondaryButton from '@/Components/SecondaryButton';
 import { Link, Head } from '@inertiajs/react';
+import { useState } from 'react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Index({ auth }) {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <>
             <Head title="Home" />
 
-            <Navbar />
+            <Navbar auth={auth} showModal={showModal} setShowModal={setShowModal} />
 
-            <HeroSection />
+            <HeroSection auth={auth} setShowModal={setShowModal} />
 
             <div className="container mt-10 pb-10">
                 <h3 className='font-semibold text-2xl'>
