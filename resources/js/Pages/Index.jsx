@@ -30,7 +30,7 @@ export default function Index({ auth, posts }) {
                         posts.map((post) => (
                             <CodeCard
                                 key={post.id}
-                                name={post.user.name ?? post.user.username}
+                                user={post.user}
                                 content={post.content}
                                 language={post.language}
                                 code={post.code}

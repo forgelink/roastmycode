@@ -1,17 +1,21 @@
 import { Code, CodeBlock, dracula } from "react-code-blocks";
 import SecondaryButton from "../SecondaryButton";
+import PrimaryButton from "../PrimaryButton";
+import { usePage } from "@inertiajs/react";
 
 export default function CodeCard({
-    name,
+    user,
     content,
     language,
     code
 }) {
+    const authenticatedUser = usePage().props.auth.user;
+
     return (
         <div>
             <div className="bg-white text-black p-4 bg-opacity-80 rounded-2xl border-2 border-[#EBEBEB] backdrop-blur-[100px]">
                 <header className="flex items-center justify-between">
-                    <strong className="font-semibold">{name}</strong>
+                    <strong className="font-semibold">{user.name ?? user.username}</strong>
                     <span className="font-light text-xs uppercase">{language}</span>
                 </header>
 
@@ -31,9 +35,19 @@ export default function CodeCard({
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
-                    <span>🔥 0 Roasts</span>
+                    <div className="flex items-center gap-1">
+                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">🔥 0</button>
+                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">❤️ 0</button>
+                    </div>
 
-                    <SecondaryButton>Roast</SecondaryButton>
+                    <div className="flex items-center gap-1">
+                        {
+                            authenticatedUser !== null && authenticatedUser.id === user.id
+                            &&
+                            <PrimaryButton>Edit</PrimaryButton>
+                        }
+                        <SecondaryButton>Roast</SecondaryButton>
+                    </div>
                 </div>
             </div>
         </div>

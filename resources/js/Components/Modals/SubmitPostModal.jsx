@@ -5,7 +5,7 @@ import { useForm } from '@inertiajs/react'
 import TextAreaInput from '../TextAreaInput'
 import SecondaryButton from '../SecondaryButton'
 
-export default function SubmitPostModal({ submitModal, setSubmitModal }) {
+export default function SubmitPostModal({ submitModal, setSubmitModal, post_id = null, parent_id = null }) {
     const {
         data,
         setData,
@@ -14,6 +14,8 @@ export default function SubmitPostModal({ submitModal, setSubmitModal }) {
         reset,
         errors,
     } = useForm({
+        post_id: post_id,
+        parent_id: parent_id,
         content: '',
         language: 'JS',
         code: '',
@@ -26,7 +28,7 @@ export default function SubmitPostModal({ submitModal, setSubmitModal }) {
             onSuccess: () => {
                 Toast.fire({ icon: "success", title: 'Your code has been posted successfully.' })
                 setSubmitModal(false)
-                reset('content', 'language', 'code');
+                reset('post_id', 'parent_id', 'content', 'language', 'code');
             },
         })
     }
