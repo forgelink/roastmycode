@@ -47,7 +47,7 @@ export default function Navbar({ auth, showModal, setShowModal }) {
                                 </Dropdown.Trigger>
 
                                 <Dropdown.Content>
-                                    <Dropdown.Link href={route('profile.edit')}>Submit code</Dropdown.Link>
+                                    {/* <Dropdown.Link href={route('profile.edit')}>Submit code</Dropdown.Link> */}
                                     <Dropdown.Link href={route('logout')} method="post" as="button">
                                         Log Out
                                     </Dropdown.Link>

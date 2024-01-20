@@ -1,6 +1,6 @@
 import SecondaryButton from "./SecondaryButton";
 
-export default function HeroSection({ auth, setShowModal }) {
+export default function HeroSection({ auth, setShowModal, setSubmitModal }) {
     return (
         <div className="h-[145vh] lg:h-[100vh] overflow-hidden">
             <div className="flex flex-col lg:flex-row items-center lg:justify-between container relative h-full">
@@ -22,7 +22,7 @@ export default function HeroSection({ auth, setShowModal }) {
                                 Challenge accepted?
                             </SecondaryButton>
                             :
-                            <SecondaryButton className="mt-5">
+                            <SecondaryButton onClick={() => setSubmitModal(true)} className="mt-5">
                                 Submit your code
                             </SecondaryButton>
                     }
