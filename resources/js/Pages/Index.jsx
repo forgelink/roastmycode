@@ -1,4 +1,5 @@
 import CodeCard from '@/Components/Cards/CodeCard';
+import PostsHolder from '@/Components/Cards/PostsHolder';
 import HeroSection from '@/Components/HeroSection';
 import SubmitPostModal from '@/Components/Modals/SubmitPostModal';
 import Navbar from '@/Components/Navbar';
@@ -25,23 +26,7 @@ export default function Index({ auth, posts }) {
                     Latest Codes
                 </h3>
 
-                <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {
-                        posts.map((post) => (
-                            <CodeCard
-                                key={post.id}
-                                user={post.user}
-                                content={post.content}
-                                language={post.language}
-                                code={post.code}
-                            />
-                        ))
-                    }
-                </div>
-
-                <div className="flex justify-center mt-10">
-                    <SecondaryButton>View more</SecondaryButton>
-                </div>
+                <PostsHolder posts={posts} />
             </div>
         </>
     );
