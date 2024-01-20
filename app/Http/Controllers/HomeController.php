@@ -21,6 +21,7 @@ class HomeController extends Controller
     {
         return Post::with('user')
             ->latest()
+            ->limit(30)
             ->get();
     }
 }
