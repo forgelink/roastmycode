@@ -26,6 +26,7 @@ export default function SubmitPostModal({ submitModal, setSubmitModal }) {
             onSuccess: () => {
                 Toast.fire({ icon: "success", title: 'Your code has been posted successfully.' })
                 setSubmitModal(false)
+                reset('content', 'language', 'code');
             },
         })
     }
@@ -101,9 +102,6 @@ export default function SubmitPostModal({ submitModal, setSubmitModal }) {
                                         >
                                             <option value="JavaScript">JavaScript</option>
                                             <option value="TypeScript">TypeScript</option>
-                                            <option value="React">React (JSX)</option>
-                                            <option value="Vue">Vue</option>
-                                            <option value="Svelte">Svelte</option>
                                             <option value="PHP">PHP</option>
                                             <option value="Python">Python</option>
                                             <option value="HTML">HTML</option>

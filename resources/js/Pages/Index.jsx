@@ -3,10 +3,10 @@ import HeroSection from '@/Components/HeroSection';
 import SubmitPostModal from '@/Components/Modals/SubmitPostModal';
 import Navbar from '@/Components/Navbar';
 import SecondaryButton from '@/Components/SecondaryButton';
-import { Link, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 
-export default function Index({ auth }) {
+export default function Index({ auth, posts }) {
     const [showModal, setShowModal] = useState(false);
     const [submitModal, setSubmitModal] = useState(false);
 
@@ -26,17 +26,17 @@ export default function Index({ auth }) {
                 </h3>
 
                 <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <CodeCard
-                        name="John Doe"
-                    />
-
-                    <CodeCard
-                        name="John Doe"
-                    />
-
-                    <CodeCard
-                        name="John Doe"
-                    />
+                    {
+                        posts.map((post) => (
+                            <CodeCard
+                                key={post.id}
+                                name={post.user.name ?? post.user.username}
+                                content={post.content}
+                                language={post.language}
+                                code={post.code}
+                            />
+                        ))
+                    }
                 </div>
 
                 <div className="flex justify-center mt-10">
