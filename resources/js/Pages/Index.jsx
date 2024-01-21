@@ -21,13 +21,13 @@ export default function Index({ auth, posts }) {
 
             <SubmitPostModal submitModal={submitModal} setSubmitModal={setSubmitModal} />
 
-            <div className="container mt-10 pb-10">
+            <main className="container mt-10 pb-10">
                 <h3 className='font-semibold text-2xl'>
                     Latest Codes
                 </h3>
 
                 <PostsHolder posts={posts} />
-            </div>
+            </main>
         </>
     );
 }

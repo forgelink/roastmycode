@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
 
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -31,7 +33,7 @@ Route::middleware('auth')->group(function () {
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/post', [PostController::class, 'submit'])->name('post.submit');
+    Route::post('/posts', [PostController::class, 'submit'])->name('post.submit');
 });
 
 require __DIR__.'/auth.php';

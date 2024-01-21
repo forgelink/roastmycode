@@ -20,10 +20,7 @@ export default function PostsHolder({ posts }) {
                         postsGrid[0].map((post) => (
                             <CodeCard
                                 key={post.id}
-                                user={post.user}
-                                content={post.content}
-                                language={post.language}
-                                code={post.code}
+                                post={post}
                             />
                         ))
                     }
@@ -33,10 +30,7 @@ export default function PostsHolder({ posts }) {
                         postsGrid[1].map((post) => (
                             <CodeCard
                                 key={post.id}
-                                user={post.user}
-                                content={post.content}
-                                language={post.language}
-                                code={post.code}
+                                post={post}
                             />
                         ))
                     }
