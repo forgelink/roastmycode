@@ -12,7 +12,10 @@ class PostController extends Controller
     {
         $post->user;
 
-        return Inertia::render('Posts/Show', compact('post'));
+        return Inertia::render('Posts/Show', [
+            'post'=> $post,
+            'posts'=> self::getPosts($post->id, $post->language)
+        ]);
     }
 
     public function submit(Request $request)
@@ -29,5 +32,15 @@ class PostController extends Controller
             'language'=> $request->language,
             'code'=> $request->code
         ]);
+    }
+
+    static function getPosts(int $current_id, string $language)
+    {
+        return Post::with('user')
+            ->where('language', $language)
+            ->where('id', '!=', $current_id)
+            ->latest()
+            ->limit(3)
+            ->get();
     }
 }
