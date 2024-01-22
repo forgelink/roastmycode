@@ -21,6 +21,7 @@ export default function Show({ auth, post, posts }) {
                         <CodeCard
                             key={post.id}
                             post={post}
+                            hideCardLink={true}
                         />
                     </div>
 

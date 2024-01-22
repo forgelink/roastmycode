@@ -1,9 +1,10 @@
 import CodeCard from "@/Components/Cards/CodeCard";
 import InputError from "@/Components/InputError";
 import Navbar from "@/Components/Navbar";
+import PrimaryButton from "@/Components/PrimaryButton";
 import SecondaryButton from "@/Components/SecondaryButton";
 import TextAreaInput from "@/Components/TextAreaInput";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Show({ auth, post, posts }) {
@@ -108,7 +109,10 @@ export default function Show({ auth, post, posts }) {
                                 <InputError message={errors.code} className="mt-2" />
                             </div>
 
-                            <div className="flex justify-end mt-4">
+                            <div className="flex gap-1 justify-end mt-4">
+                                <Link href={route('post.show', post.id)}>
+                                    <PrimaryButton type="button">Cancel</PrimaryButton>
+                                </Link>
                                 <SecondaryButton
                                     type="submit"
                                 >

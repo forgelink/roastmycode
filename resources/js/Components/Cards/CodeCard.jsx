@@ -4,7 +4,8 @@ import PrimaryButton from "../PrimaryButton";
 import { Link, usePage } from "@inertiajs/react";
 
 export default function CodeCard({
-    post
+    post,
+    hideCardLink = false
 }) {
     const authenticatedUser = usePage().props.auth.user;
 
@@ -46,9 +47,19 @@ export default function CodeCard({
                             </Link>
                         }
 
-                        <Link href={route('post.show', post.id)}>
-                            <SecondaryButton>Roast</SecondaryButton>
-                        </Link>
+                        {
+                            !hideCardLink &&
+                            <Link href={route('post.show', post.id)}>
+                                <SecondaryButton>
+                                    {
+                                        authenticatedUser !== null && authenticatedUser.id === post.user.id ?
+                                            'View roasts'
+                                            :
+                                            'Roast'
+                                    }
+                                </SecondaryButton>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>
