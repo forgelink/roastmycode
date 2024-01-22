@@ -34,6 +34,36 @@ class PostController extends Controller
         ]);
     }
 
+    public function edit(Post $post)
+    {
+        if ($post->user->id !== auth()->id()) return abort(403);
+
+        return Inertia::render('Posts/Edit', [
+            'post'=> $post,
+            'posts'=> self::getPosts($post->id, $post->language)
+        ]);
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        if ($post->user->id !== auth()->id()) return abort(403);
+
+        $request->validate([
+            'content'=> ['required', 'string', 'max:1000'],
+            'language'=> ['required', 'string', 'max:15'],
+            'code'=> ['required', 'string'],
+        ]);
+
+        $post->update([
+            'user_id'=> $request->user()->id,
+            'content'=> $request->content,
+            'language'=> $request->language,
+            'code'=> $request->code
+        ]);
+
+        return to_route('post.show', $post->id);
+    }
+
     static function getPosts(int $current_id, string $language)
     {
         return Post::with('user')

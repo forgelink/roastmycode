@@ -41,7 +41,9 @@ export default function CodeCard({
                         {
                             authenticatedUser !== null && authenticatedUser.id === post.user.id
                             &&
-                            <PrimaryButton>Edit</PrimaryButton>
+                            <Link href={route('post.edit', post.id)}>
+                                <PrimaryButton>Edit</PrimaryButton>
+                            </Link>
                         }
 
                         <Link href={route('post.show', post.id)}>
