@@ -7,7 +7,7 @@ import TextAreaInput from "@/Components/TextAreaInput";
 import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Show({ auth, post, posts }) {
+export default function Show({ auth, post, posts, replies }) {
     const [showModal, setShowModal] = useState(false);
     const [submitModal, setSubmitModal] = useState(false);
 
@@ -40,6 +40,21 @@ export default function Show({ auth, post, posts }) {
                                     null
                             )}
                         />
+
+                        <h3 className='font-semibold text-2xl my-7'>
+                            🔥 Latest Roasts
+                        </h3>
+
+                        <div className="space-y-8">
+                            {
+                                replies.map((_post) => (
+                                    <CodeCard
+                                        key={_post.id}
+                                        post={_post}
+                                    />
+                                ))
+                            }
+                        </div>
                     </div>
 
 
