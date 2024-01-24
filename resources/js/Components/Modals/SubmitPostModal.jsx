@@ -17,7 +17,7 @@ export default function SubmitPostModal({ submitModal, setSubmitModal, post_id =
         post_id: post_id,
         parent_id: parent_id,
         content: '',
-        language: 'JS',
+        language: 'JavaScript',
         code: '',
     });
 
