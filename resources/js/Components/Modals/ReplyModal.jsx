@@ -113,7 +113,7 @@ export default function ReplyModal({ submitModal, setSubmitModal, post}) {
                                                 <option value="Java">Java</option>
                                             </select>
 
-                                            <InputError message={errors.content} className="mt-2" />
+                                            <InputError message={errors.language} className="mt-2" />
                                         </div>
 
                                         <div>
