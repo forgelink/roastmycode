@@ -18,8 +18,6 @@ export default function Show({ auth, post, posts }) {
         reset,
         errors,
     } = useForm({
-        post_id: post.id,
-        parent_id: null,
         content: post.content,
         language: post.language,
         code: post.code,

@@ -1,10 +1,15 @@
 import CodeCard from "@/Components/Cards/CodeCard";
+import InputError from "@/Components/InputError";
 import Navbar from "@/Components/Navbar";
-import { Head } from "@inertiajs/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import TextAreaInput from "@/Components/TextAreaInput";
+import { Head, useForm } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Show({ auth, post, posts }) {
     const [showModal, setShowModal] = useState(false);
+
+    const authenticatedUser = auth.user;
 
     return (
         <>

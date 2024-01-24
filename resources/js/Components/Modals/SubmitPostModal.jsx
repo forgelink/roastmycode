@@ -139,7 +139,7 @@ export default function SubmitPostModal({ submitModal, setSubmitModal, post_id =
                                         <SecondaryButton
                                             type="submit"
                                         >
-                                            Got it, thanks!
+                                            Submit code
                                         </SecondaryButton>
                                     </div>
                                 </form>
