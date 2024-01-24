@@ -112,6 +112,7 @@ export default function Show({ auth, post, posts }) {
                                     <PrimaryButton type="button">Cancel</PrimaryButton>
                                 </Link>
                                 <SecondaryButton
+                                    disabled={processing}
                                     type="submit"
                                 >
                                     Submit changes
