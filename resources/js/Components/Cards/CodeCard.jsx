@@ -15,11 +15,11 @@ export default function CodeCard({
     });
 
     const likePost = () => {
-        if (!authenticatedUser) return Toast.fire({icon: 'error', title: "Please login in order to like a comment"});
-        
+        if (!authenticatedUser) return Toast.fire({ icon: 'error', title: "Please login in order to like a comment" });
+
         submitPost(route('post.like', post.id), {
             onError: (error) => {
-                Toast.fire({icon: 'error', title: error.post});
+                Toast.fire({ icon: 'error', title: error.post });
             }
         })
     }
@@ -34,18 +34,21 @@ export default function CodeCard({
 
                 <p className="mt-4 whitespace-pre-line">{post.content}</p>
 
-                <div className="mt-4">
-                    <div className="relative flex overflow-auto whitespace-pre p-3 bg-[#282a36] rounded-xl mt-3">
-                        <Code
-                            text={post.code}
-                            language={post.language}
-                            theme={dracula}
-                        />
-                        <div className="text-xs text-[#6272A4] font-light  absolute right-3 bottom-2">
-                            <span>// roast.forgelink.co</span>
+                {
+                    post.code &&
+                    <div className="mt-4">
+                        <div className="relative flex overflow-auto whitespace-pre p-3 bg-[#282a36] rounded-xl mt-3">
+                            <Code
+                                text={post.code}
+                                language={post.language}
+                                theme={dracula}
+                            />
+                            <div className="text-xs text-[#6272A4] font-light  absolute right-3 bottom-2">
+                                <span>// roast.forgelink.co</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
 
                 <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-1">

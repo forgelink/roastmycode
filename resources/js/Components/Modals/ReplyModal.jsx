@@ -126,7 +126,6 @@ export default function ReplyModal({ submitModal, setSubmitModal, post}) {
                                                 className="w-full"
                                                 rows={7}
                                                 placeholder={`Write the best you got!`}
-                                                required
                                             />
 
                                             <InputError message={errors.code} className="mt-2" />

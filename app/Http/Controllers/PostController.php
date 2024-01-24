@@ -28,7 +28,7 @@ class PostController extends Controller
             'parent_id'=> ['nullable', 'integer', 'exists:posts,id'],
             'content'=> ['required', 'string', 'max:100000'],
             'language'=> ['required', 'string', 'max:15'],
-            'code'=> ['required_without:parent_id', 'string'],
+            'code'=> ['nullable', 'string'],
         ]);
 
         Post::create([
