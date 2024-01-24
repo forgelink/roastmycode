@@ -20,6 +20,8 @@ class HomeController extends Controller
     static function getPosts()
     {
         return Post::with('user')
+            ->withCount('replies', 'likes')
+            ->where('parent_id', null)
             ->latest()
             ->limit(30)
             ->get();

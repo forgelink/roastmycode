@@ -1,7 +1,7 @@
-import { Code, CodeBlock, dracula } from "react-code-blocks";
+import { Code, dracula } from "react-code-blocks";
 import SecondaryButton from "../SecondaryButton";
 import PrimaryButton from "../PrimaryButton";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 
 export default function CodeCard({
     post,
@@ -9,6 +9,20 @@ export default function CodeCard({
     hideCardLink = false
 }) {
     const authenticatedUser = usePage().props.auth.user;
+
+    const { post: submitPost, processing } = useForm({
+
+    });
+
+    const likePost = () => {
+        if (!authenticatedUser) return Toast.fire({icon: 'error', title: "Please login in order to like a comment"});
+        
+        submitPost(route('post.like', post.id), {
+            onError: (error) => {
+                Toast.fire({icon: 'error', title: error.post});
+            }
+        })
+    }
 
     return (
         <div>
@@ -35,8 +49,15 @@ export default function CodeCard({
 
                 <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-1">
-                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">🔥 {post.replies_count ?? 0}</button>
-                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">❤️ 0</button>
+                        <Link href={route('post.show', post.id)}>
+                            <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">🔥 {post.replies_count ?? 0}</button>
+                        </Link>
+                        <button
+                            onClick={likePost}
+                            disabled={processing}
+                            className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200 disabled:opacity-70 disabled:cursor-not-allowed">
+                            ❤️ {post.likes_count ?? 0}
+                        </button>
                     </div>
 
                     <div className="flex items-center gap-1">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -11,7 +12,7 @@ class PostController extends Controller
     public function show(int $post)
     {
         $post = Post::with('user')
-            ->withCount('replies')
+            ->withCount('replies', 'likes')
             ->find($post);
 
         return Inertia::render('Posts/Show', [
@@ -67,6 +68,26 @@ class PostController extends Controller
         ]);
 
         return to_route('post.show', $post->id);
+    }
+
+    public function like(Post $post)
+    {
+        if ($post->user_id === auth()->id()) {
+            throw ValidationException::withMessages([
+                'post' => "You can't like your own post.",
+            ]);
+        }
+
+        $liked = $post->likes()->where('user_id', auth()->id())->first();
+
+        if ($liked) {
+            $liked->delete();
+            return;
+        }
+
+        $post->likes()->create([
+            'user_id'=> auth()->id()
+        ]);
     }
 
     static function getPosts(int $current_id, string $language)

@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'submit'])->name('post.submit');
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
     Route::post('/posts/{post}/edit', [PostController::class, 'update'])->name('post.update');
+    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('post.like');
 });
 
 require __DIR__ . '/auth.php';
