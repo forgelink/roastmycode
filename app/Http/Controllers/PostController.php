@@ -26,9 +26,9 @@ class PostController extends Controller
     {
         $request->validate([
             'parent_id'=> ['nullable', 'integer', 'exists:posts,id'],
-            'content'=> ['required', 'string', 'max:1000'],
+            'content'=> ['required', 'string', 'max:100000'],
             'language'=> ['required', 'string', 'max:15'],
-            'code'=> ['required', 'string'],
+            'code'=> ['required_without:parent_id', 'string'],
         ]);
 
         Post::create([
