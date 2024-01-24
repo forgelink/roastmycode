@@ -28,6 +28,8 @@
             <span class="text-2xl">Loading</span>
         </div>
     </div>
+
+    <script src="https://tinylytics.app/embed/{{ env('TINYLYTICS_EMBED_CODE') }}" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var loadingElement = document.getElementById('initial_loading');
