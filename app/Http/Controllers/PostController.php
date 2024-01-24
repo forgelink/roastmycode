@@ -8,19 +8,23 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function show(Post $post)
+    public function show(int $post)
     {
-        $post->user;
+        $post = Post::with('user')
+            ->withCount('replies')
+            ->find($post);
 
         return Inertia::render('Posts/Show', [
             'post'=> $post,
-            'posts'=> self::getPosts($post->id, $post->language)
+            'posts'=> self::getPosts($post->id, $post->language),
+            'replies'=> self::getLatestReplies($post->id, $post->language),
         ]);
     }
 
     public function submit(Request $request)
     {
         $request->validate([
+            'parent_id'=> ['nullable', 'integer', 'exists:posts,id'],
             'content'=> ['required', 'string', 'max:1000'],
             'language'=> ['required', 'string', 'max:15'],
             'code'=> ['required', 'string'],
@@ -28,6 +32,7 @@ class PostController extends Controller
 
         Post::create([
             'user_id'=> $request->user()->id,
+            'parent_id'=> $request->parent_id,
             'content'=> $request->content,
             'language'=> $request->language,
             'code'=> $request->code
@@ -67,10 +72,21 @@ class PostController extends Controller
     static function getPosts(int $current_id, string $language)
     {
         return Post::with('user')
+            ->where('parent_id', null)
             ->where('language', $language)
             ->where('id', '!=', $current_id)
             ->latest()
             ->limit(3)
+            ->get();
+    }
+
+    static function getLatestReplies(int $current_id, string $language)
+    {
+        return Post::with('user')
+            ->where('parent_id', $current_id)
+            ->where('language', $language)
+            ->latest()
+            ->limit(30)
             ->get();
     }
 }

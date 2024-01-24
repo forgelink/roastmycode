@@ -1,5 +1,6 @@
 import CodeCard from "@/Components/Cards/CodeCard";
 import InputError from "@/Components/InputError";
+import ReplyModal from "@/Components/Modals/ReplyModal";
 import Navbar from "@/Components/Navbar";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextAreaInput from "@/Components/TextAreaInput";
@@ -8,6 +9,7 @@ import { useState } from "react";
 
 export default function Show({ auth, post, posts }) {
     const [showModal, setShowModal] = useState(false);
+    const [submitModal, setSubmitModal] = useState(false);
 
     const authenticatedUser = auth.user;
 
@@ -16,6 +18,8 @@ export default function Show({ auth, post, posts }) {
             <Head title="Roast this code" />
 
             <Navbar auth={auth} showModal={showModal} setShowModal={setShowModal} />
+
+            <ReplyModal post={post} submitModal={submitModal} setSubmitModal={setSubmitModal} />
 
             <main className="mt-32 container">
                 <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -27,6 +31,14 @@ export default function Show({ auth, post, posts }) {
                             key={post.id}
                             post={post}
                             hideCardLink={true}
+                            replyButton={(
+                                authenticatedUser && authenticatedUser.id !== post.user_id ?
+                                    <PrimaryButton onClick={() => setSubmitModal(true)}>
+                                        Reply
+                                    </PrimaryButton>
+                                    :
+                                    null
+                            )}
                         />
                     </div>
 

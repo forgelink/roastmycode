@@ -5,6 +5,7 @@ import { Link, usePage } from "@inertiajs/react";
 
 export default function CodeCard({
     post,
+    replyButton = null,
     hideCardLink = false
 }) {
     const authenticatedUser = usePage().props.auth.user;
@@ -34,7 +35,7 @@ export default function CodeCard({
 
                 <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-1">
-                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">🔥 0</button>
+                        <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">🔥 {post.replies_count ?? 0}</button>
                         <button className="hover:bg-gray-50 py-1 px-2 rounded-lg transition duration-200">❤️ 0</button>
                     </div>
 
@@ -60,6 +61,8 @@ export default function CodeCard({
                                 </SecondaryButton>
                             </Link>
                         }
+
+                        {replyButton}
                     </div>
                 </div>
             </div>
