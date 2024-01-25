@@ -29,7 +29,7 @@ export default function AuthenticateModal({showModal, setShowModal}) {
     }
 
     return (
-        <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <Modal maxWidth="sm" show={showModal} onClose={() => setShowModal(false)}>
             <div className="w-full p-4">
                 <header className="flex items-center justify-between">
                     <div>
